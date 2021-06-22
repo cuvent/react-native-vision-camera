@@ -50,6 +50,7 @@
     "vision",
     "native",
     "module",
+    "cuvent",
     "react",
     "ai",
     "ar",
@@ -57,13 +58,13 @@
     "qr-code",
     "scanner"
   ],
-  "repository": "https://github.com/mrousavy/react-native-vision-camera",
+  "repository": "https://github.com/cuvent/react-native-vision-camera",
   "author": "Marc Rousavy <marcrousavy@hotmail.com> (https://github.com/mrousavy)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrousavy/react-native-vision-camera/issues"
+    "url": "https://github.com/cuvent/react-native-vision-camera/issues"
   },
-  "homepage": "https://mrousavy.github.io/react-native-vision-camera/",
+  "homepage": "https://cuvent.github.io/react-native-vision-camera/",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

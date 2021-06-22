@@ -47,7 +47,7 @@ suspend fun CameraView.startRecording(options: ReadableMap, onRecordCallback: Ca
       override fun onVideoSaved(outputFileResults: VideoCapture.OutputFileResults) {
         val map = Arguments.createMap()
         map.putString("path", videoFile.absolutePath)
-        // TODO: duration and size - see https://github.com/mrousavy/react-native-vision-camera/issues/77
+        // TODO: duration and size - see https://github.com/cuvent/react-native-vision-camera/issues/77
         onRecordCallback(map, null)
 
         // reset the torch mode

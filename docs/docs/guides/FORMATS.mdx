@@ -39,7 +39,7 @@ function App() {
 ```
 
 :::note
-See the [CameraPreset.ts](https://github.com/mrousavy/react-native-vision-camera/blob/main/src/CameraPreset.ts) type for more information about presets
+See the [CameraPreset.ts](https://github.com/cuvent/react-native-vision-camera/blob/main/src/CameraPreset.ts) type for more information about presets
 :::
 
 :::warning
@@ -61,7 +61,7 @@ Each application has different needs, so the format filtering is up to you.
 To get all available formats, simply use the `CameraDevice`'s `.formats` property. See how to get a camera device in the [Camera Devices guide](devices).
 
 :::note
-You can also manually get all camera devices and decide which device to use based on the available `formats`.
+You can also manually get all camera devices and decide which device to use based on the available `formats`. In fact, this is how we do it in the [Cuvent](https://cuvent.com) app.
 :::
 
 This example shows how you would pick the format with the _highest frame rate_:

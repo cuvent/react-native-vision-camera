@@ -16,7 +16,7 @@ The Camera's `isActive` property can be used to _pause_ the session (`isActive={
 
 For example, you want to **pause the camera** when the user **navigates to another page** or **minimizes the app** since otherwise the camera continues to run in the background without the user seeing it, causing **siginificant battery drain**. Also, on iOS a green dot indicates the user that the camera is still active, possibly causing the user to raise privacy concerns. (🔗 See ["About the orange and green indicators in your iPhone status bar"](https://support.apple.com/en-us/HT211876))
 
-This example demonstrates how you could pause the camera stream once the app goes into background using a [custom `useIsAppForeground` hook](https://github.com/mrousavy/react-native-vision-camera/blob/main/example/src/hooks/useIsForeground.ts):
+This example demonstrates how you could pause the camera stream once the app goes into background using a [custom `useIsAppForeground` hook](https://github.com/cuvent/react-native-vision-camera/blob/main/example/src/hooks/useIsForeground.ts):
 
 ```tsx
 function App() {

@@ -15,7 +15,7 @@
 
 Read the READMEs in [`android/`](android/README.md), [`ios/`](ios/README.md), and [`cpp/`](cpp/README.md) for a quick overview of the development workflow.
 
-> You can also open VisionCamera in [a quick online editor (github1s)](https://github1s.com/mrousavy/react-native-vision-camera)
+> You can also open VisionCamera in [a quick online editor (github1s)](https://github1s.com/cuvent/react-native-vision-camera)
 
 ### iOS
 

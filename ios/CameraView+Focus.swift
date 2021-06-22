@@ -1,6 +1,6 @@
 //
 //  CameraView+focus.swift
-//  mrousavy
+//  Cuvent
 //
 //  Created by Marc Rousavy on 19.02.21.
 //  Copyright © 2021 mrousavy. All rights reserved.

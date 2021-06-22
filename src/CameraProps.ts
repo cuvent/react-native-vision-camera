@@ -8,7 +8,7 @@ export interface CameraProps extends ViewProps {
   /**
    * The Camera Device to use.
    *
-   * See the [Camera Devices](https://mrousavy.github.io/react-native-vision-camera/docs/guides/devices) section in the documentation for more information about Camera Devices.
+   * See the [Camera Devices](https://cuvent.github.io/react-native-vision-camera/docs/guides/devices) section in the documentation for more information about Camera Devices.
    *
    * @example
    * ```tsx
@@ -26,7 +26,7 @@ export interface CameraProps extends ViewProps {
    */
   device: CameraDevice;
   /**
-   * Whether the Camera should actively stream video frames, or not. See the [documentation about the `isActive` prop](https://mrousavy.github.io/react-native-vision-camera/docs/guides/lifecycle#the-isactive-prop) for more information.
+   * Whether the Camera should actively stream video frames, or not. See the [documentation about the `isActive` prop](https://cuvent.github.io/react-native-vision-camera/docs/guides/lifecycle#the-isactive-prop) for more information.
    *
    * This can be compared to a Video component, where `isActive` specifies whether the video is paused or not.
    *
@@ -36,16 +36,16 @@ export interface CameraProps extends ViewProps {
 
   //#region Use-cases
   /**
-   * * Enables **photo capture** with the `takePhoto` function (see ["Taking Photos"](https://mrousavy.github.io/react-native-vision-camera/docs/guides/capturing#taking-photos))
+   * * Enables **photo capture** with the `takePhoto` function (see ["Taking Photos"](https://cuvent.github.io/react-native-vision-camera/docs/guides/capturing#taking-photos))
    */
   photo?: boolean;
   /**
-   * * Enables **video capture** with the `startRecording` function (see ["Recording Videos"](https://mrousavy.github.io/react-native-vision-camera/docs/guides/capturing/#recording-videos))
-   * * Enables **frame processing** (see ["Frame Processors"](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors))
+   * * Enables **video capture** with the `startRecording` function (see ["Recording Videos"](https://cuvent.github.io/react-native-vision-camera/docs/guides/capturing/#recording-videos))
+   * * Enables **frame processing** (see ["Frame Processors"](https://cuvent.github.io/react-native-vision-camera/docs/guides/frame-processors))
    */
   video?: boolean;
   /**
-   * * Enables **audio capture** for video recordings (see ["Recording Videos"](https://mrousavy.github.io/react-native-vision-camera/docs/guides/capturing/#recording-videos))
+   * * Enables **audio capture** for video recordings (see ["Recording Videos"](https://cuvent.github.io/react-native-vision-camera/docs/guides/capturing/#recording-videos))
    */
   audio?: boolean;
   //#endregion
@@ -70,7 +70,7 @@ export interface CameraProps extends ViewProps {
   /**
    * Enables or disables the native pinch to zoom gesture.
    *
-   * If you want to implement a custom zoom gesture, see [the Zooming with Reanimated documentation](https://mrousavy.github.io/react-native-vision-camera/docs/guides/animated).
+   * If you want to implement a custom zoom gesture, see [the Zooming with Reanimated documentation](https://cuvent.github.io/react-native-vision-camera/docs/guides/animated).
    *
    * @default false
    */
@@ -159,7 +159,7 @@ export interface CameraProps extends ViewProps {
   /**
    * A worklet which will be called for every frame the Camera "sees". Throttle the Frame Processor's frame rate with {@linkcode frameProcessorFps}.
    *
-   * > See [the Frame Processors documentation](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors) for more information
+   * > See [the Frame Processors documentation](https://cuvent.github.io/react-native-vision-camera/docs/guides/frame-processors) for more information
    *
    * @example
    * ```tsx

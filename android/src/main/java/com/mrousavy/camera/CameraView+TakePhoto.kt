@@ -36,7 +36,7 @@ suspend fun CameraView.takePhoto(options: ReadableMap): WritableMap = coroutineS
       else -> throw InvalidTypeScriptUnionError("flash", flashMode ?: "(null)")
     }
   }
-  // All those options are not yet implemented - see https://github.com/mrousavy/react-native-vision-camera/issues/75
+  // All those options are not yet implemented - see https://github.com/cuvent/react-native-vision-camera/issues/75
   if (options.hasKey("photoCodec")) {
     // TODO photoCodec
   }

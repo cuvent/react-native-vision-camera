@@ -1,6 +1,6 @@
 //
 //  AVCaptureDevice.DeviceType+descriptor.swift
-//  mrousavy
+//  Cuvent
 //
 //  Created by Marc Rousavy on 15.12.20.
 //  Copyright © 2020 mrousavy. All rights reserved.

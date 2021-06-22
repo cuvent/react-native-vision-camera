@@ -141,14 +141,14 @@ class CameraError<TCode extends CameraErrorCode> extends Error {
 /**
  * Represents any kind of error that occured while trying to capture a video or photo.
  *
- * See the ["Camera Errors" documentation](https://mrousavy.github.io/react-native-vision-camera/docs/guides/errors) for more information about Camera Errors.
+ * See the ["Camera Errors" documentation](https://cuvent.github.io/react-native-vision-camera/docs/guides/errors) for more information about Camera Errors.
  */
 export class CameraCaptureError extends CameraError<CaptureError> {}
 
 /**
  * Represents any kind of error that occured in the Camera View Module.
  *
- * See the ["Camera Errors" documentation](https://mrousavy.github.io/react-native-vision-camera/docs/guides/errors) for more information about Camera Errors.
+ * See the ["Camera Errors" documentation](https://cuvent.github.io/react-native-vision-camera/docs/guides/errors) for more information about Camera Errors.
  */
 export class CameraRuntimeError extends CameraError<
   PermissionError | ParameterError | DeviceError | FormatError | SessionError | SystemError | UnknownError

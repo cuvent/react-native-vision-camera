@@ -63,19 +63,19 @@ export function detectObject(frame: Frame): string {
 }
 ```
 
-You can also manipulate the buffer and return it (or a copy of it) by using the [`Frame` class](https://github.com/mrousavy/react-native-vision-camera/blob/main/ios/Frame%20Processor/Frame.h):
+You can also manipulate the buffer and return it (or a copy of it) by using the [`Frame` class](https://github.com/cuvent/react-native-vision-camera/blob/main/ios/Frame%20Processor/Frame.h):
 
 ```objc
 #import <VisionCamera/Frame.h>
 
 static inline id resize(Frame* frame, NSArray args) {
   CMSampleBufferRef resizedBuffer = // ...
-
+  
   return [[Frame alloc] initWithBuffer:resizedBuffer orientation:frame.orientation];
 }
 ```
 
-Which returns a [`Frame`](https://github.com/mrousavy/react-native-vision-camera/blob/main/src/Frame.ts) in JS:
+Which returns a [`Frame`](https://github.com/cuvent/react-native-vision-camera/blob/main/src/Frame.ts) in JS:
 
 ```js
 const frameProcessor = useFrameProcessor((frame) => {
@@ -172,7 +172,7 @@ Your Frame Processor Plugins have to be fast. VisionCamera automatically detects
 
 #### 🚀 Create your first Frame Processor Plugin for [iOS](frame-processors-plugins-ios) or [Android](frame-processors-plugins-android)!
 
-[1]: https://github.com/mrousavy/react-native-vision-camera/blob/main/src/Frame.ts
-[2]: https://github.com/mrousavy/react-native-vision-camera/blob/main/ios/Frame%20Processor/Frame.h
+[1]: https://github.com/cuvent/react-native-vision-camera/blob/main/src/Frame.ts
+[2]: https://github.com/cuvent/react-native-vision-camera/blob/main/ios/Frame%20Processor/Frame.h
 [3]: https://developer.android.com/reference/androidx/camera/core/ImageProxy
 [4]: https://github.com/facebook/react-native/blob/9a43eac7a32a6ba3164a048960101022a92fcd5a/React/Base/RCTBridgeModule.h#L20-L24

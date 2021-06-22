@@ -1,6 +1,6 @@
 //
 //  AVCapturePhotoOutput+mirror.swift
-//  mrousavy
+//  Cuvent
 //
 //  Created by Marc Rousavy on 18.01.21.
 //  Copyright © 2021 mrousavy. All rights reserved.

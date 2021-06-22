@@ -1,6 +1,6 @@
 //
 //  Collection+safe.swift
-//  mrousavy
+//  Cuvent
 //
 //  Created by Marc Rousavy on 10.01.21.
 //  Copyright © 2021 mrousavy. All rights reserved.
