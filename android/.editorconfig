@@ -1,5 +1,0 @@
-[*.{kt,kts}]
-indent_size=2
-insert_final_newline=true
-max_line_length=off
-disabled_rules=no-wildcard-imports
