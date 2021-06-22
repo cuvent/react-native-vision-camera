@@ -6,17 +6,17 @@
   <br />
   <blockquote><b>📸 The Camera library that sees the vision.</b></blockquote>
   <pre align="center">npm i <a href="https://www.npmjs.com/package/react-native-vision-camera">react-native-vision-camera</a><br/>npx pod-install                 </pre>
-  <a align="center" href='https://ko-fi.com/F1F8CLXG' target='_blank'>
-    <img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-  </a>
-  <br/>
-  <a align="center" href="https://github.com/mrousavy?tab=followers">
-    <img src="https://img.shields.io/github/followers/mrousavy?label=Follow%20%40mrousavy&style=social" />
-  </a>
+  <span>
+    <a align="center" href="https://github.com/mrousavy?tab=followers">
+      <img src="https://img.shields.io/github/followers/mrousavy?label=Follow%20%40mrousavy&style=social" />
+    </a>
+  </span>
   <br />
-  <a align="center" href="https://twitter.com/mrousavy">
-    <img src="https://img.shields.io/twitter/follow/mrousavy?label=Follow%20%40mrousavy&style=social" />
-  </a>
+  <span>
+    <a align="center" href="https://twitter.com/mrousavy">
+      <img src="https://img.shields.io/twitter/follow/mrousavy?label=Follow%20%40mrousavy&style=social" />
+    </a>
+  </span>
 </div>
 
 <br/>
