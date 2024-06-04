@@ -5,12 +5,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.hardware.camera2.CameraMetadata
+import android.hardware.camera2.CaptureRequest
 import android.media.AudioManager
 import android.util.Log
 import android.util.Range
 import android.util.Size
 import androidx.annotation.MainThread
 import androidx.annotation.OptIn
+import androidx.camera.camera2.interop.Camera2CameraControl
+import androidx.camera.camera2.interop.CaptureRequestOptions
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraSelector
@@ -646,6 +651,26 @@ class CameraSession(private val context: Context, private val callback: Callback
         Log.i(TAG, "Focused successfully!")
       } else {
         Log.i(TAG, "Focus failed.")
+      }
+    } catch (e: CameraControl.OperationCanceledException) {
+      throw FocusCanceledError()
+    }
+  }
+
+  @ExperimentalCamera2Interop
+  @SuppressLint("RestrictedApi")
+  fun focusDepth(depth: Double) {
+    val camera = camera ?: throw CameraNotReadyError()
+
+    try {
+      Camera2CameraControl.from(camera.cameraControl).let {
+        CaptureRequestOptions.Builder().apply {
+          val distance = depth.toFloat()
+          setCaptureRequestOption(CaptureRequest.LENS_FOCUS_DISTANCE, distance)
+          setCaptureRequestOption(CaptureRequest.CONTROL_AF_MODE, CameraMetadata.CONTROL_AF_MODE_OFF)
+        }.let { builder ->
+          it.addCaptureRequestOptions(builder.build())
+        }
       }
     } catch (e: CameraControl.OperationCanceledException) {
       throw FocusCanceledError()

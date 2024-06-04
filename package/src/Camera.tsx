@@ -372,6 +372,27 @@ export class Camera extends React.PureComponent<CameraProps, CameraState> {
       throw tryParseNativeCameraError(e)
     }
   }
+
+  /**
+   * Focus the camera to a specific distance.
+   * @param {number} distance The distance to focus to. It should be lower than the minFocusDistance. Lower the value (closer to 0.001f), further the distance, higher the value (closer to the minFocusDistance), more macro the focus will be.
+   *
+   * Make sure the value doesn't exceed the device.minFocusDistance.
+   *
+   * @throws {@linkcode CameraRuntimeError} When any kind of error occured while focussing.
+   * Use the {@linkcode CameraRuntimeError.code | code} property to get the actual error
+   * @example
+   * ```ts
+   * await camera.current.focusDepth(5)
+   * ```
+   */
+  public async focusDepth(distance: number): Promise<void> {
+    try {
+      return await CameraModule.focusDepth(this.handle, distance)
+    } catch (e) {
+      throw tryParseNativeCameraError(e)
+    }
+  }
   //#endregion
 
   //#region Static Functions (NativeModule)
