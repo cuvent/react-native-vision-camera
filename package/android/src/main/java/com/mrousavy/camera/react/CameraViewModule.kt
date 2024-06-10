@@ -3,6 +3,7 @@ package com.mrousavy.camera.react
 import android.Manifest
 import android.content.pm.PackageManager
 import android.util.Log
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.Promise
@@ -183,6 +184,18 @@ class CameraViewModule(reactContext: ReactApplicationContext) : ReactContextBase
       val view = findCameraView(viewTag)
       withPromise(promise) {
         view.focus(point)
+        return@withPromise null
+      }
+    }
+  }
+
+  @ExperimentalCamera2Interop
+  @ReactMethod
+  fun focusDepth(viewTag: Int, distance: Double, promise: Promise) {
+    backgroundCoroutineScope.launch {
+      val view = findCameraView(viewTag)
+      withPromise(promise) {
+        view.focusDepth(distance)
         return@withPromise null
       }
     }
