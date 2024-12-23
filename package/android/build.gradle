@@ -192,7 +192,7 @@ dependencies {
   implementation "androidx.camera:camera-extensions:${camerax_version}"
 
   // Some Coroutines extension functions
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1"
 
   if (enableCodeScanner) {
     // User enabled code-scanner, so we bundle the 2.4 MB model in the app.
