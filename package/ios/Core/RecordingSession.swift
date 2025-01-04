@@ -28,6 +28,8 @@ final class RecordingSession {
   private var isFinishing = false
 
   private let lock = DispatchSemaphore(value: 1)
+  private var shouldStartSession = false
+  private var shouldResumeSession = false
 
   /**
    Gets the file URL of the recorded video.
@@ -155,15 +157,9 @@ final class RecordingSession {
       throw CameraError.capture(.createRecorderError(message: "Failed to start Asset Writer!"))
     }
     VisionLogger.log(level: .info, message: "Asset Writer started!")
-
-    // Start the session - any timestamp before this point will be cut off.
-    let now = CMClockGetTime(clock)
-    assetWriter.startSession(atSourceTime: now)
-    VisionLogger.log(level: .info, message: "Asset Writer session started at \(now.seconds).")
-
-    // Start both tracks
-    videoTrack?.start()
-    audioTrack?.start()
+      
+    shouldStartSession = true
+    shouldResumeSession = false
   }
 
   /**
@@ -222,9 +218,7 @@ final class RecordingSession {
       lock.signal()
     }
 
-    // Resume both tracks
-    videoTrack?.resume()
-    audioTrack?.resume()
+    shouldResumeSession = true
   }
 
   func append(buffer: CMSampleBuffer, ofType type: TrackType) throws {
@@ -235,7 +229,21 @@ final class RecordingSession {
     guard assetWriter.status == .writing else {
       throw CameraError.capture(.unknown(message: "Frame arrived, but AssetWriter status is \(assetWriter.status.descriptor)!"))
     }
-
+      
+    if shouldStartSession || shouldResumeSession {
+      if type == .audio {
+        // Ignore early audio buffer
+        return
+      }
+      if shouldStartSession {
+        // Start the writer sessions with the first video buffer
+        startSession(at: CMSampleBufferGetPresentationTimeStamp(buffer))
+      } else {
+        // Resume the writer session with the first video buffer
+        resumeSession()
+      }
+    }
+      
     // Write buffer to video/audio track
     let track = try getTrack(ofType: type)
     try track.append(buffer: buffer)
@@ -269,6 +277,33 @@ final class RecordingSession {
       return videoTrack
     }
   }
+    
+
+  /**
+   Starts the asset writer session at the specified time.
+   */
+  private func startSession(at time: CMTime) {
+    // Start the session - any timestamp before this point will be cut off.
+    assetWriter.startSession(atSourceTime: time)
+    VisionLogger.log(level: .info, message: "Asset Writer session started at \(time.seconds).")
+
+    // Start both tracks
+    videoTrack?.start()
+    audioTrack?.start()
+      
+    shouldStartSession = false
+    shouldResumeSession = false
+  }
+    
+  /**
+   Resumes the asset writer session.
+   */
+  func resumeSession() {
+    // Resume both tracks
+    videoTrack?.resume()
+    audioTrack?.resume()
+    shouldResumeSession = false
+  }
 
   /**
    Stops the AssetWriters and calls the completion callback.
@@ -276,6 +311,8 @@ final class RecordingSession {
   private func finish() {
     lock.wait()
     defer {
+      shouldStartSession = false
+      shouldResumeSession = false
       lock.signal()
     }
 
