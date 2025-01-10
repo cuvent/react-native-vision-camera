@@ -38,6 +38,11 @@ class MetadataProvider(val context: Context) : LocationListener {
       Log.i(TAG, "Start updating location...")
       locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, UPDATE_INTERVAL_MS, UPDATE_DISTANCE_M, this)
       this.location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+      if (this.location == null){
+        // Request the current location if lastKnownLocation is null
+        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, this, null)
+      }
     } else {
       Log.i(TAG, "Stopping location updates...")
       locationManager.removeUpdates(this)
