@@ -28,7 +28,7 @@
     "@docusaurus/module-type-aliases": "3.6.2",
     "@docusaurus/tsconfig": "3.6.2",
     "@docusaurus/types": "3.6.2",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.0.8",
     "docusaurus-plugin-typedoc": "^1.0.5",
     "typedoc": "^0.26.11",
     "typedoc-plugin-markdown": "^4.2.10",
