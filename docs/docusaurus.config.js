@@ -239,4 +239,25 @@ module.exports = {
       },
     ],
   ],
+  headTags: [
+    {
+      tagName: "link",
+      attributes:
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      }
+    },
+    {
+      tagName: "link",
+      attributes:
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+      }
+    },
+  ],
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap"
+  ]
 }

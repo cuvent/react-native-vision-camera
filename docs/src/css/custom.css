@@ -7,7 +7,7 @@
 
 :root {
   --ifm-code-font-size: 95%;
-
+  --ifm-font-family-monospace: "Fira Code";
   --docusaurus-highlighted-code-line-bg: rgb(229, 229, 232);
   --ifm-color-primary: rgb(79, 151, 77);
   --ifm-link-color: var(--ifm-color-primary);
