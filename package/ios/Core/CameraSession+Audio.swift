@@ -38,7 +38,24 @@ extension CameraSession {
         // allow system sounds (notifications, calls, music) to play while recording
         try audioSession.setAllowHapticsAndSystemSoundsDuringRecording(true)
       }
-
+      
+      if #available(iOS 14.0, *) {
+        // sets the orientation of the phone so stereo records accordingly
+        try audioSession.setPreferredInputOrientation(.portrait)
+        
+        if let inputs = audioSession.availableInputs,
+           let mic = inputs.first(where: { $0.portType == .builtInMic }) {
+          // Configure mic to use stereo audio
+          if let back = mic.dataSources?.first(where: { $0.orientation == .back && $0.supportedPolarPatterns?.contains(.stereo) == true }) {
+            try back.setPreferredPolarPattern(.stereo)
+            try mic.setPreferredDataSource(back)
+          }
+          
+          // Use mic for Audio Session
+          try audioSession.setPreferredInput(mic)
+        }
+      }
+      
       audioCaptureSession.startRunning()
       VisionLogger.log(level: .info, message: "Audio Session activated!")
     } catch let error as NSError {
