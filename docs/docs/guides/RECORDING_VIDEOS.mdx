@@ -172,6 +172,43 @@ The resulting video will be recorded at the frame rate provided to the [`fps`](/
 
 See [FPS](formats#fps) for more information.
 
+### Path
+
+It is possible to specify a custom path used to save the temp files. By default it saves this to the temp folder.
+If you are using expo, it is not possible to delete and manipulate the files saved in the temp folder, therefore you can provide one using the expo file system:
+
+``` tsx
+import * as FileSystem from "expo-file-system"; 
+...
+// Set up the temp directory (you can skip this if you want to just use ${FileSystem.documentDirectory})
+useEffect(() => {
+    const setupTempDirectory = async () => {
+      const tempDir = `${FileSystem.documentDirectory}temp_videos/`; // use either documentDirectory or cacheDirectory
+      try {
+        const dirInfo = await FileSystem.getInfoAsync(tempDir);
+        if (!dirInfo.exists) {
+          await FileSystem.makeDirectoryAsync(tempDir, {
+            intermediates: true,
+          });
+        }
+      } catch (error) {
+        console.error("Error creating temp directory:", error);
+      }
+    };
+
+    setupTempDirectory();
+  }, []);
+
+// Specify this new path when calling startRecording
+
+camera.current.startRecording({
+  ...
+  path: `${FileSystem.documentDirectory}temp_videos/`,
+  ...
+})
+```
+
+
 ## Saving the Video to the Camera Roll
 
 Since the Video is stored as a temporary file, you need save it to the Camera Roll to permanentely store it. You can use [react-native-cameraroll](https://github.com/react-native-cameraroll/react-native-cameraroll) for this:
