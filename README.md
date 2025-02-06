@@ -38,7 +38,7 @@ cd ios && pod install
 ..and get started by [setting up permissions](https://react-native-vision-camera.com/docs/guides)!
 
 ### Documentation
-
+  IMPORTANT: Minimum react-native version supported is 0.71, for <0.71 use V2
 * [Guides](https://react-native-vision-camera.com/docs/guides)
 * [API](https://react-native-vision-camera.com/docs/api)
 * [Example](./example/)
