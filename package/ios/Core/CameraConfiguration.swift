@@ -182,6 +182,7 @@ final class CameraConfiguration {
     var enableBufferCompression = false
     var enableHdr = false
     var enableFrameProcessor = false
+    var enableDepth = false
   }
 
   /**

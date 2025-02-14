@@ -74,6 +74,10 @@ export interface FormatFilter {
    * you might want to choose a different auto-focus system.
    */
   autoFocusSystem?: AutoFocusSystem
+  /**
+   * Specifies whether to prefer formats that support depth data capture.
+   */
+  depth?: boolean
 }
 
 type FilterWithPriority<T> = {
@@ -234,6 +238,12 @@ export function getCameraFormat(device: CameraDevice, filters: FormatFilter[]): 
     if (filter.autoFocusSystem != null) {
       if (bestFormat.autoFocusSystem === filter.autoFocusSystem.target) leftPoints += filter.autoFocusSystem.priority
       if (format.autoFocusSystem === filter.autoFocusSystem.target) rightPoints += filter.autoFocusSystem.priority
+    }
+
+    // Find depth data
+    if (filter.depth != null) {
+      if (bestFormat.supportsDepthCapture === filter.depth.target) leftPoints += filter.depth.priority
+      if (format.supportsDepthCapture === filter.depth.target) rightPoints += filter.depth.priority
     }
 
     if (rightPoints > leftPoints) bestFormat = format

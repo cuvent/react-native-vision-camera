@@ -103,6 +103,7 @@ class CameraDeviceDetails(private val cameraInfo: CameraInfo, extensionsManager:
     map.putString("hardwareLevel", hardwareLevel.unionValue)
     map.putString("sensorOrientation", sensorOrientation.unionValue)
     map.putArray("formats", formats)
+    map.putBoolean("supportsDepthData", false)
     return map
   }
 

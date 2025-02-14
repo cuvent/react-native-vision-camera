@@ -13,7 +13,11 @@ import Foundation
  A fully-featured Camera Session supporting preview, video, photo, frame processing, and code scanning outputs.
  All changes to the session have to be controlled via the `configure` function.
  */
-final class CameraSession: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
+final class CameraSession:
+  NSObject,
+  AVCaptureVideoDataOutputSampleBufferDelegate,
+  AVCaptureAudioDataOutputSampleBufferDelegate,
+  AVCaptureDataOutputSynchronizerDelegate {
   // Configuration
   private var isInitialized = false
   var configuration: CameraConfiguration?
@@ -27,7 +31,9 @@ final class CameraSession: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   var photoOutput: AVCapturePhotoOutput?
   var videoOutput: AVCaptureVideoDataOutput?
   var audioOutput: AVCaptureAudioDataOutput?
+  var depthOutput: AVCaptureDepthDataOutput?
   var codeScannerOutput: AVCaptureMetadataOutput?
+  var outputSynchronizer: AVCaptureDataOutputSynchronizer?
   // State
   var metadataProvider = MetadataProvider()
   var recordingSession: RecordingSession?
@@ -276,7 +282,24 @@ final class CameraSession: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     }
   }
 
-  private final func onVideoFrame(sampleBuffer: CMSampleBuffer, orientation: Orientation, isMirrored: Bool) {
+  func dataOutputSynchronizer(_: AVCaptureDataOutputSynchronizer, didOutput synchronizedDataCollection: AVCaptureSynchronizedDataCollection) {
+    guard let videoOutput else { return }
+    guard let videoData = synchronizedDataCollection.synchronizedData(for: videoOutput) as? AVCaptureSynchronizedSampleBufferData else { return }
+
+    if let depthOutput {
+      // We have depth data as well
+      guard let depthData = synchronizedDataCollection.synchronizedData(for: depthOutput) as? AVCaptureSynchronizedDepthData else { return }
+      onVideoFrame(sampleBuffer: videoData.sampleBuffer,
+                   orientation: videoOutput.orientation,
+                   isMirrored: videoOutput.isMirrored,
+                   depthData: depthData.depthData)
+    } else {
+      // We only have video data
+      onVideoFrame(sampleBuffer: videoData.sampleBuffer, orientation: videoOutput.orientation, isMirrored: videoOutput.isMirrored)
+    }
+  }
+
+  private final func onVideoFrame(sampleBuffer: CMSampleBuffer, orientation: Orientation, isMirrored: Bool, depthData: AVDepthData? = nil) {
     if let recordingSession {
       do {
         // Write the Video Buffer to the .mov/.mp4 file
@@ -290,7 +313,10 @@ final class CameraSession: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
 
     if let delegate {
       // Call Frame Processor (delegate) for every Video Frame
-      delegate.onFrame(sampleBuffer: sampleBuffer, orientation: orientation, isMirrored: isMirrored)
+      delegate.onFrame(sampleBuffer: sampleBuffer,
+                       orientation: orientation,
+                       isMirrored: isMirrored,
+                       depthData: depthData)
     }
   }
 

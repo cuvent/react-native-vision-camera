@@ -65,6 +65,14 @@ export interface Frame {
   readonly pixelFormat: PixelFormat
 
   /**
+   * Represents the depth data of this Frame, if the Camera is configured to stream depth data.
+   */
+  readonly depth?: {
+    readonly width: number
+    readonly height: number
+  }
+
+  /**
    * Get the underlying data of the Frame as a uint8 array buffer.
    *
    * The format of the buffer depends on the Frame's {@linkcode pixelFormat}.

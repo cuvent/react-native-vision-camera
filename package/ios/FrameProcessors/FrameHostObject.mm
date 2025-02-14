@@ -74,6 +74,16 @@ jsi::Value FrameHostObject::get(jsi::Runtime& runtime, const jsi::PropNameID& pr
   if (name == "planesCount") {
     return jsi::Value((double)_frame.planesCount);
   }
+  if (name == "depth") {
+    if (_frame.depth == nil) {
+      return jsi::Value::undefined();
+    }
+    jsi::Object object(runtime);
+    CVPixelBufferRef depthMap = _frame.depth.depthDataMap;
+    object.setProperty(runtime, "width", jsi::Value(static_cast<double>(CVPixelBufferGetWidth(depthMap))));
+    object.setProperty(runtime, "height", jsi::Value(static_cast<double>(CVPixelBufferGetHeight(depthMap))));
+    return object;
+  }
 
   // Internal methods
   if (name == "incrementRefCount") {

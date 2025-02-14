@@ -32,6 +32,7 @@ extension AVCaptureDevice {
       "hardwareLevel": HardwareLevel.full.jsValue,
       "sensorOrientation": sensorOrientation.jsValue,
       "formats": formats.map { $0.toJSValue() },
+      "supportsDepthData": hasMediaType(.depthData),
     ]
   }
 }

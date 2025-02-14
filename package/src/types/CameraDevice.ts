@@ -216,6 +216,10 @@ export interface CameraDevice {
    */
   supportsFocus: boolean
   /**
+   * Specifies whether this devices supports depth data output streaming.
+   */
+  supportsDepthData: boolean
+  /**
    * The hardware level of the Camera.
    * - On Android, some older devices are running at a `legacy` or `limited` level which means they are running in a backwards compatible mode.
    * - On iOS, all devices are `full`.
