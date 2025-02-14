@@ -28,6 +28,24 @@ extension AVMetadataObject.ObjectType {
         throw CameraError.codeScanner(.codeTypeNotSupported(codeType: string))
       }
       return
+    case "gs1-data-bar":
+      if #available(iOS 15.4, *) {
+        self = .gs1DataBar
+      } else {
+        throw CameraError.codeScanner(.codeTypeNotSupported(codeType: string))
+      }
+    case "gs1-data-bar-limited":
+      if #available(iOS 15.4, *) {
+        self = .gs1DataBarLimited
+      } else {
+        throw CameraError.codeScanner(.codeTypeNotSupported(codeType: string))
+      }
+    case "gs1-data-bar-expanded":
+      if #available(iOS 15.4, *) {
+        self = .gs1DataBarExpanded
+      } else {
+        throw CameraError.codeScanner(.codeTypeNotSupported(codeType: string))
+      }
     case "ean-13":
       self = .ean13
       return
@@ -67,6 +85,21 @@ extension AVMetadataObject.ObjectType {
     if #available(iOS 15.4, *) {
       if self == .codabar {
         return "codabar"
+      }
+    }
+    if #available(iOS 15.4, *) {
+      if self == .gs1DataBar {
+        return "gs1-data-bar"
+      }
+    }
+    if #available(iOS 15.4, *) {
+      if self == .gs1DataBarLimited {
+        return "gs1-data-bar-limited"
+      }
+    }
+    if #available(iOS 15.4, *) {
+      if self == .gs1DataBarExpanded {
+        return "gs1-data-bar-expanded"
       }
     }
 
