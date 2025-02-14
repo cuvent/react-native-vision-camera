@@ -10,7 +10,7 @@ import AVFoundation
 import Foundation
 
 extension AVMetadataObject.ObjectType {
-  init(withString string: String) throws {
+  init?(withString string: String) throws {
     switch string {
     case "code-128":
       self = .code128
@@ -25,7 +25,7 @@ extension AVMetadataObject.ObjectType {
       if #available(iOS 15.4, *) {
         self = .codabar
       } else {
-        throw CameraError.codeScanner(.codeTypeNotSupported(codeType: string))
+        return nil
       }
       return
     case "ean-13":

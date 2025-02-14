@@ -16,7 +16,7 @@ struct CodeScannerOptions: Equatable {
 
   init(fromJsValue dictionary: NSDictionary) throws {
     if let codeTypes = dictionary["codeTypes"] as? [String] {
-      self.codeTypes = try codeTypes.map { value in
+      self.codeTypes = try codeTypes.compactMap { value in
         return try AVMetadataObject.ObjectType(withString: value)
       }
     } else {

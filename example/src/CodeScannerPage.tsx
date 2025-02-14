@@ -62,7 +62,7 @@ export function CodeScannerPage({ navigation }: Props): React.ReactElement {
 
   // 5. Initialize the Code Scanner to scan QR codes and Barcodes
   const codeScanner = useCodeScanner({
-    codeTypes: ['qr', 'ean-13'],
+    codeTypes: ['qr', 'ean-13', 'codabar'],
     onCodeScanned: onCodeScanned,
   })
 
