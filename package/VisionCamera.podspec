@@ -22,12 +22,17 @@ else
 end
 
 def Pod::getWorkletsLibraryPath
-  output = `cd "#{Pod::Config.instance.installation_root.to_s}" && node --print "try { require.resolve('react-native-worklets-core/package.json') } catch(e) { /* returning undefined, if package not found */ }"`
+  installation_root = Pod::Config.instance.installation_root.to_s
+  command = "cd \"#{installation_root}\" && node --print \"try { console.log(require.resolve('react-native-worklets-core/package.json')) } catch(e) { console.log('PACKAGE_NOT_FOUND') }\""
   
-  if output.strip == "undefined"
+  output = `#{command}`
+  lines = output.split("\n").map(&:strip)
+  
+  if lines.include?('PACKAGE_NOT_FOUND')
     return nil
   else
-    return File.dirname(output)
+    package_line = lines.find { |line| line.include?('react-native-worklets-core/package.json') }
+    return package_line ? File.dirname(package_line) : nil
   end
 end
 
