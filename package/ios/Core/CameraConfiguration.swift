@@ -50,6 +50,8 @@ final class CameraConfiguration {
   // isActive (Start/Stop)
   var isActive = false
 
+  var enableIdleTimer = false
+
   // Audio Session
   var audio: OutputConfiguration<Audio> = .disabled
 
@@ -72,6 +74,7 @@ final class CameraConfiguration {
       zoom = other.zoom
       exposure = other.exposure
       isActive = other.isActive
+      enableIdleTimer = other.enableIdleTimer
       audio = other.audio
     } else {
       // self will just be initialized with the default values.

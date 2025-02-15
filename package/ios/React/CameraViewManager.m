@@ -25,6 +25,7 @@ RCT_EXTERN__BLOCKING_SYNCHRONOUS_METHOD(installFrameProcessorBindings);
 
 // Camera View Properties
 RCT_EXPORT_VIEW_PROPERTY(isActive, BOOL);
+RCT_EXPORT_VIEW_PROPERTY(enableIdleTimer, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(cameraId, NSString);
 RCT_EXPORT_VIEW_PROPERTY(enableDepthData, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(enablePortraitEffectsMatteDelivery, BOOL);

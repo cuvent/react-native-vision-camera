@@ -276,6 +276,15 @@ export interface CameraProps extends ViewProps {
   //#endregion
 
   /**
+   * Enables or disables the idle timer, allowing the phone to go to sleep according to the system settings.
+   *
+   * @platform iOS
+   *
+   * @default false
+   */
+  enableIdleTimer?: boolean
+
+  /**
    * Enables or disables depth data delivery for photo capture.
    *
    * Make sure the given {@linkcode format} supports depth data (see {@linkcode CameraDeviceFormat.supportsDepthCapture format.supportsDepthCapture}).

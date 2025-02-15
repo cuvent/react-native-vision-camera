@@ -58,6 +58,7 @@ public final class CameraView: UIView, CameraSessionDelegate, PreviewViewDelegat
 
   // other props
   @objc var isActive = false
+  @objc var enableIdleTimer = false
   @objc var torch = "off"
   @objc var zoom: NSNumber = 1.0 // in "factor"
   @objc var exposure: NSNumber = 0.0
@@ -280,7 +281,7 @@ public final class CameraView: UIView, CameraSessionDelegate, PreviewViewDelegat
     }
 
     // Prevent phone from going to sleep
-    UIApplication.shared.isIdleTimerDisabled = isActive
+    UIApplication.shared.isIdleTimerDisabled = isActive && !enableIdleTimer
   }
 
   func updatePreview() {
